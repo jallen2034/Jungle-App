@@ -4,7 +4,15 @@
     <h1>My Cart</h1>
   </header>
 
-  <div class="panel panel-default items">
+  <!-- remember, "enhanced_cart" here comes from the applicationm_controller (application_controller.rb) 
+  which is is stored as an instance variable (@enhanced_cart) in that method of the ApplicationController class
+  - what's inside this "@enhanced_cart" instance variable? Its whatever the Product model returned from making its
+    SQL query to our database using Active Record-->
+  <div class="panel panel-default items">  
+  <% if enhanced_cart.empty? %>
+       <h3>Sorry Cart is Empty</h3>
+       <%= link_to "Back to Products Page", "/" %>
+  <% else %>
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -25,11 +33,12 @@
             TOTAL:
           </th>
           <th>
-            <%= cart_subtotal_cents / 100.0 %>
+            $<%= cart_subtotal_cents / 100.0 %>
           </th>
         </tr>
       </tfoot>
     </table>
+  <% end %>
   </div>
 
   <div class="row">

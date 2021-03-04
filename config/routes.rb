@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root to: 'products#index'
 
+  # creates additonal routes in our appliaction? 
+  # products/index or products/show
   resources :products, only: [:index, :show]
   resources :categories, only: [:show]
 
