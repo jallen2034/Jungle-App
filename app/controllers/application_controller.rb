@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   private
 
+  # in this controller, this is the part which defines the cookie
+  # ":cart" 
   def cart
     @cart ||= cookies[:cart].present? ? JSON.parse(cookies[:cart]) : {}
   end
@@ -12,6 +14,8 @@ class ApplicationController < ActionController::Base
 
   def enhanced_cart
     @enhanced_cart ||= Product.where(id: cart.keys).map {|product| { product:product, quantity: cart[product.id.to_s] } }
+    # puts '@enhanced_cart:'
+    # puts @enhanced_cart
   end
   helper_method :enhanced_cart
 
@@ -30,3 +34,5 @@ class ApplicationController < ActionController::Base
   end
 
 end
+
+
