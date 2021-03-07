@@ -3,8 +3,10 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  # implement HTTP basic auth here?
+  
   private
-
+  
   # in this controller, this is the part which defines the cookie
   # ":cart" 
   def cart
